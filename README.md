@@ -39,7 +39,7 @@ A well-defined and written-out feature list
 <br> Client will be able to log-in using their Yahoo, Linkedin, and Google profiles
 
 **Stock look-up and save:**
-<br> Using 'Yahoo finance api' client will be able to look-up, select particular securities, and save these to their profile
+<br> Using [Markit api](http://dev.markitondemand.com/MODApis/) client will be able to look-up, select particular securities, and save these to their profile
 
 **Main Feature - Comparison:**
 <br>Compare three ticker symbols return for a specific time period  (provided by yahoo finance)
