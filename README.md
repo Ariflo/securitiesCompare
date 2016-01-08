@@ -52,14 +52,30 @@ Wire Frame Layouts
 -
 **Homepage**
 
+User learns about concept of Momentum <br>
+User can login via a form or LinkedIn etc.<br>
+User now sees the dashboard page<br>
+
+
 ![wireframe](public/images/Screen Shot 2016-01-08 at 11.44.54 AM.png)
 
 **Dashboard**
+
+User can input 3 ticker symbols<br>
+User can press a button to see info about that ticker<br>
+User presses a button “start” or “go” or “process” etc.<br><br>
+Website returns the percentage returns of each of the 3 tickers
+and the best return is highlighted and a chart is populated         with the returns of the 3 tickers<br><br>
+User can store their chosen tickers 
+    
+
 
 ![wireframe](public/images/Screen Shot 2016-01-08 at 11.50.19 AM.png)
 
 **User Profile Dropdown**
 
+User can update their profile
+    
 ![wireframe](public/images/Screen Shot 2016-01-08 at 11.50.36 AM.png)
 
 		
