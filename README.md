@@ -46,5 +46,21 @@ A well-defined and written-out feature list
 
 **Chart (Stretch):**
 <br>Client profile will display comparison chart of selected tickers vs SPY
- 
+
+
+Wire Frame Layouts
+-
+**Homepage**
+
+![](/Users/AirMansEnigma/Desktop/Screen Shot 2016-01-08 at 11.44.54 AM.png)
+
+**Dashboard**
+
+![](/Users/AirMansEnigma/Desktop/Screen Shot 2016-01-08 at 11.50.19 AM.png)
+
+**User Profile Dropdown**
+
+![](/Users/AirMansEnigma/Desktop/Screen Shot 2016-01-08 at 11.50.36 AM.png)
+
+
 		
