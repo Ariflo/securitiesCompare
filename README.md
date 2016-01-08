@@ -52,15 +52,14 @@ Wire Frame Layouts
 -
 **Homepage**
 
-![wireframe](/Users/AirMansEnigma/Desktop/Screen Shot 2016-01-08 at 11.44.54 AM.png)
+![wireframe](public/images/Screen Shot 2016-01-08 at 11.44.54 AM.png)
 
 **Dashboard**
 
-![wireframe](/Users/AirMansEnigma/Desktop/Screen Shot 2016-01-08 at 11.50.19 AM.png)
+![wireframe](public/images/Screen Shot 2016-01-08 at 11.50.19 AM.png)
 
 **User Profile Dropdown**
 
-![wireframe](/Users/AirMansEnigma/Desktop/Screen Shot 2016-01-08 at 11.50.36 AM.png)
-
+![wireframe](public/images/Screen Shot 2016-01-08 at 11.50.36 AM.png)
 
 		
