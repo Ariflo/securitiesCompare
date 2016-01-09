@@ -4,10 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var locus = require('locus');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var dashboard = require('./routes/dashboard');
 
 
 var port = process.env.PORT || 3000; 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.post('/dash', dashboard);
 
 
 // catch 404 and forward to error handler
