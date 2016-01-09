@@ -10,7 +10,7 @@
 
         <ul class="nav navbar-nav navbar-right">
   	      <form class="navbar-form navbar-left" role="search" action="/" method="GET">
-  	  	<a class="navbar-brand" data-toggle="modal" href="#"  data-target="#myModal">Sign-up</a>
+  	  	<a class="navbar-brand" data-toggle="modal"  data-target="#myModal">Sign-up</a>
   	  	<a class="navbar-brand" href="/">Sign-In</a>
   	      </form>
             </ul>
@@ -19,7 +19,7 @@
   </nav>
 
   <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal show" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -35,8 +35,9 @@
 		          <label>Company</label>
 		          <input id="company" class="form-control" type="text" name="company" placeholder="Company">
 
-		          <label>Email</label>
-		          <input id="email" class="form-control" type="email" name="email" placeholder="Email" required>		         
+		          <label for="inputError1">Email</label>
+		          <input id="inputError1" class="form-control has-error" type="email" name="email" placeholder="Email" required> 
+                      <p id="emailCopyErrMsg">Already a Member</p>       
 
 		           <label>Phone</label>
 		          <input id="phone" class="form-control" type="number" name="phone" placeholder="212-456-7890" required>
@@ -51,6 +52,7 @@
 
 		          <label>Password Confirmation</label>
 		          <input id="pwConfirm" class="form-control" type="password" name="pwConfirm" placeholder="Password confirm" required>   
+
 		    </div>
 		    <div class="modal-footer">
 		      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -60,11 +62,3 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
