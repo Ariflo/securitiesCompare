@@ -6,11 +6,6 @@ var pg = require('pg');
 var locus = require('locus');
 var bcrypt = require('bcrypt');
 
-/* GET Dashboard. */
-router.get('/dash', function(req, res, next){
-	res.render('dashboard');
-
-});
 
 /* POST user info to Dashboard. */
 router.post('/dash', function(req, res, next) {
@@ -30,7 +25,7 @@ router.post('/dash', function(req, res, next) {
 					bcrypt.hash(req.body.password, salt, function(err, hash){
 
 						knex('clients').insert({name: req.body.name, company: req.body.company, email: req.body.email, phone: req.body.phone, address: req.body.address, password: hash}).then(function(){
-							res.redirect('/dash');
+							res.render('dashboard', { title: 'Momentum Investments' });
 						});
 					});
 				});
