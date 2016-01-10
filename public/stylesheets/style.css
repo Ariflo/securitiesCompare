@@ -8,7 +8,7 @@ a {
   color: #00B7FF;
 }
 
-#passMatchErrMsg, #emailCopyErrMsg, #passLengthErrMsg{
+#passMatchErrMsg, #emailCopyErrMsg, #passLengthErrMsg, #siginPassErrMsg{
 	color:red;
 }
 

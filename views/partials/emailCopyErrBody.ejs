@@ -35,9 +35,11 @@
 		          <label>Company</label>
 		          <input id="company" class="form-control" type="text" name="company" placeholder="Company">
 
+                      <div class="form-group has-error">
 		          <label for="inputError1">Email</label>
-		          <input id="inputError1" class="form-control has-error" type="email" name="email" placeholder="Email" required> 
-                      <p id="emailCopyErrMsg">Already a Member</p>       
+		          <input id="inputError1" class="form-control" type="email" name="email" placeholder="Email" required> 
+                      <p id="emailCopyErrMsg">Already a Member</p>
+                      </div>       
 
 		           <label>Phone</label>
 		          <input id="phone" class="form-control" type="number" name="phone" placeholder="212-456-7890" required>
@@ -55,7 +57,7 @@
 
 		    </div>
 		    <div class="modal-footer">
-		      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
 		      <input id="updateSubmitBtn" class="btn btn-primary" type="submit" value="Submit">
 		    </div>
 	        </form> 

@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var locus = require('locus');
+var methodOverride = require("method-override");
 
 require('dotenv').load();
 
@@ -37,11 +38,18 @@ app.use(cookieSession({
     ]
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/dash', dashboard);
+
+app.get('/dash', dashboard);
+app.get('/dash/signout', dashboard);
+
 app.post('/dash', dashboard);
+app.put('/dash', dashboard);
+
+
 
 
 // catch 404 and forward to error handler

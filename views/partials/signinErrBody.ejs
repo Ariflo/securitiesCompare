@@ -9,10 +9,10 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav navbar-right">
-  	      <form class="navbar-form navbar-left" role="search" action="/" method="GET">
+          <form class="navbar-form navbar-left" role="search" action="/" method="GET">
             <a class="navbar-brand" data-toggle="modal" href="#"  data-target="#signUpModal">Sign-Up</a>
-  	  	<a class="navbar-brand" data-toggle="modal" href="#"  data-target="#signInModal">Sign-In</a>
-  	      </form>
+        <a class="navbar-brand" data-toggle="modal" href="#"  data-target="#signInModal">Sign-In</a>
+          </form>
             </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -63,7 +63,7 @@
 
 
    <!-- Modal -->
-  <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal show" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -71,26 +71,23 @@
           <h4 class="modal-title" id="myModalLabel">Welcome to Momentum</h4>
           <h6 class="modal-title" id="myModalLabel2">Please Sign-in below</h6>
         </div>
-	        <form id="signupForm" action="/dash?_method=put" method="POST">
-		    <div class="modal-body">
-    		          <label>Email</label>
-    		          <input id="email" class="form-control" type="email" name="email" placeholder="Email" required>		         
-    		          <label>Password</label>
-    		          <input id="password" class="form-control" type="password" name="password" placeholder="Password" required>
-		    </div>
-		    <div class="modal-footer">
+          <form id="signupForm" action="/dash?_method=put" method="POST">
+        <div class="modal-body">
+                  <div class="form-group has-error">
+
+                      <label>Email</label>
+                      <input id="email" class="form-control" type="email" name="email" placeholder="Email" required>             
+                      <label>Password</label>
+                      <input id="password" class="form-control" type="password" name="password" placeholder="Password" required>
+                      <p id="siginPassErrMsg">Incorrect E-mail / Password. Please try again</p>
+
+                  </div>
+        </div>
+        <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <input id="updateSubmitBtn" class="btn btn-primary" type="submit" value="Submit">
-		    </div>
-	        </form> 
+        </div>
+          </form> 
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
