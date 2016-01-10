@@ -9,7 +9,7 @@ var methodOverride = require("method-override");
 
 router.use(methodOverride('_method'));
 
-router.get('/dash', function(req, res){
+router.get('/dash/:clientName', function(req, res){
 	if(req.session === null){
 		res.redirect('/');	
 	}else{
@@ -26,7 +26,7 @@ router.get('/dash', function(req, res){
 });
 
 /* POST user info to Dashboard. */
-router.post('/dash', function(req, res, next) {
+router.post('/dash/:clientName', function(req, res, next) {
 	if (req.body.password !== req.body.pwConfirm){
 		res.render("passwordMatchErr", { title: 'Momentum Investments' });
 
@@ -52,7 +52,7 @@ router.post('/dash', function(req, res, next) {
 	}
 });
 
-router.put('/dash', function(req, res, next){
+router.put('/dash/:clientName', function(req, res, next){
 
 	knex('clients').where({email: req.body.email}).first().then(function(user){
 		if(user){
@@ -74,7 +74,7 @@ router.put('/dash', function(req, res, next){
 });
 
 
-router.get('/dash/signout', function(req, res){
+router.get('/dash/:client/signout', function(req, res){
 	req.session = null;
 	res.redirect('/');
 });

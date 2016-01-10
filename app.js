@@ -43,11 +43,12 @@ app.use(methodOverride('_method'));
 app.use('/', routes);
 app.use('/users', users);
 
-app.get('/dash', dashboard);
-app.get('/dash/signout', dashboard);
+app.get('/dash/:client/signout', dashboard);
+app.get('/dash/:clientName', dashboard);
 
-app.post('/dash', dashboard);
-app.put('/dash', dashboard);
+
+app.post('/dash/:clientName', dashboard);
+app.put('/dash/:clientName', dashboard);
 
 
 

@@ -21,7 +21,7 @@
           <h4 class="modal-title" id="myModalLabel">Welcome to Momentum</h4>
           <h6 class="modal-title" id="myModalLabel2">Please enter your information below</h6>
         </div>
-          <form id="signupForm" action="/dash" method="POST">
+          <form id="signupForm" action="/dash/<%=name%>" method="POST">
         <div class="modal-body">
               <label>Name</label>
               <input id="name" class="form-control" type="name" name="name" placeholder="Name" required>
@@ -65,7 +65,7 @@
           <h4 class="modal-title" id="myModalLabel">Welcome to Momentum</h4>
           <h6 class="modal-title" id="myModalLabel2">Please Sign-in below</h6>
         </div>
-	        <form id="signupForm" action="/dash?_method=put" method="POST">
+	        <form id="signupForm" action="/dash/<%=name%>?_method=put" method="POST">
 		    <div class="modal-body">
     		          <label>Email</label>
     		          <input id="email" class="form-control" type="email" name="email" placeholder="Email" required>		         
