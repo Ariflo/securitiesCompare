@@ -11,9 +11,8 @@ var methodOverride = require("method-override");
 require('dotenv').load();
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var edit = require('./routes/edit');
 var dashboard = require('./routes/dashboard');
-
 
 var port = process.env.PORT || 3000; 
 
@@ -41,16 +40,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 
 app.use('/', routes);
-app.use('/users', users);
-
-app.get('/dash/:client/signout', dashboard);
-app.get('/dash/:clientName', dashboard);
-
-
-app.post('/dash/:clientName', dashboard);
-app.put('/dash/:clientName', dashboard);
-
-
+app.use('/dash', dashboard)
+app.use('/:clientName', edit);
 
 
 // catch 404 and forward to error handler

@@ -9,13 +9,13 @@ var methodOverride = require("method-override");
 
 router.use(methodOverride('_method'));
 
-router.get('/dash/:clientName', function(req, res){
+router.get('/:clientName', function(req, res){
 	if(req.session === null){
 		res.redirect('/');	
 	}else{
 		knex('clients').where({id: req.session.id}).first().then(function(user){
 			if(user){
-				res.render('dashboard', { title: 'Momentum Investments', name: user.name});	
+				res.render('dashboard', { title: 'Momentum Investments', name: user.name, phone: user.phone, address: user.address});	
 			}else{
 				res.redirect('/');	
 			}
@@ -26,7 +26,7 @@ router.get('/dash/:clientName', function(req, res){
 });
 
 /* POST user info to Dashboard. */
-router.post('/dash/:clientName', function(req, res, next) {
+router.post('/:clientName', function(req, res, next) {
 	if (req.body.password !== req.body.pwConfirm){
 		res.render("passwordMatchErr", { title: 'Momentum Investments' });
 
@@ -43,7 +43,7 @@ router.post('/dash/:clientName', function(req, res, next) {
 					bcrypt.hash(req.body.password, salt, function(err, hash){
 
 						knex('clients').insert({name: req.body.name, company: req.body.company, email: req.body.email, phone: req.body.phone, address: req.body.address, password: hash}).then(function(){
-							res.render('dashboard', { title: 'Momentum Investments', name:req.body.name});
+							res.render('dashboard', { title: 'Momentum Investments', name:req.body.name, phone: req.body.phone,  address: req.body.address});
 						});
 					});
 				});
@@ -52,7 +52,7 @@ router.post('/dash/:clientName', function(req, res, next) {
 	}
 });
 
-router.put('/dash/:clientName', function(req, res, next){
+router.put('/:clientName', function(req, res, next){
 
 	knex('clients').where({email: req.body.email}).first().then(function(user){
 		if(user){
@@ -61,7 +61,10 @@ router.put('/dash/:clientName', function(req, res, next){
 				if(result){
 					req.session.id = user.id; 
 					req.session.name = user.name;
-					res.render('dashboard', {title: 'Momentum Investments', id: req.session.id, name: req.session.name}); 
+					req.session.phone = user.phone;
+					req.session.address = user.address; 
+
+					res.render('dashboard', {title: 'Momentum Investments', id: req.session.id, name: req.session.name, phone: user.phone,  address: user.address}); 
 				}else{
 					res.render('signinErr', {title: 'Momentum Investments'});
 				}
@@ -74,7 +77,7 @@ router.put('/dash/:clientName', function(req, res, next){
 });
 
 
-router.get('/dash/:client/signout', function(req, res){
+router.get('/:client/signout', function(req, res){
 	req.session = null;
 	res.redirect('/');
 });

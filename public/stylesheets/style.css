@@ -12,3 +12,10 @@ a {
 	color:red;
 }
 
+.nav-pills{
+	margin-top: 5px;
+}
+
+.dropdown a{
+	color: grey;
+}
