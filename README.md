@@ -38,6 +38,9 @@ A well-defined and written-out feature list
 **Sign-in/Sign-out:**
 <br> Client will be able to log-in using their Yahoo, Linkedin, and Google profiles
 
+**Profile Edit:**
+<br> Client will be able to edit their profiles (change name, address, company, phone number, add photo) and change the settings (remove portfolios, change global market ticker, and delete their account)
+ 
 **Stock look-up and save:**
 <br> Using [Markit api](http://dev.markitondemand.com/MODApis/) client will be able to look-up, select particular securities, and save these to their profile
 
