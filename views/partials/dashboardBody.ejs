@@ -37,3 +37,24 @@
 
   </div><!-- /.container-fluid -->
 </nav>
+
+<form class='col-sm-6' action="/dash/<%=name%>/search" method='GET'>
+
+    <label>Stock 1</label>
+    <input id="stock1" class="form-control" type="text" name="tickerval1" placeholder="Ticker" required>
+    <div id = 'return'><p>%</p></div>
+
+    <label>Stock 2</label>
+    <input id="stock2" class="form-control" type="text" name="tickerval2" placeholder="Ticker" required>
+    <div id = 'return'><p>%</p></div>
+
+    <label>Stock 3</label>
+    <input id="stock3" class="form-control" type="text" name="tickerval3"  placeholder="Ticker" required>
+    <div id = 'return'><p>%</p></div>    
+
+    <label>Time Period</label>
+    <input id="time period" class="form-control" type="number" name="num"  placeholder="days" required>
+
+    <input id="stockSubmitBtn" class="btn btn-primary" type="submit" value="Submit">
+
+</form>
