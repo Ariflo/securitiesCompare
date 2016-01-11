@@ -32,3 +32,14 @@ a {
 #gem{
 	float:right;
 }
+
+.ui-menu-item{
+	list-style: none;
+	background: #ffffff;
+	width: 23em;
+	height: 2em;
+	/*border-radius: 5px;*/
+	text-align: left; 
+
+}
+

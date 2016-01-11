@@ -40,20 +40,33 @@
 
 <form class='col-sm-4' action="/dash/<%=name%>/search" method='GET'>
 
+<div id = "stock1" class="dropdown">
     <label>Stock 1</label>
-    <input id="stock1" class="form-control" type="text" name="tickerval1" placeholder="Ticker" required>
-    <div id = 'return'><p>%</p></div>
+    <input type="text" id="symbolsearch" class="form-control" placeholder="Enter company name or symbol">
+</div>   
 
+<div id = "stock2" class="dropdown">
     <label>Stock 2</label>
-    <input id="stock2" class="form-control" type="text" name="tickerval2" placeholder="Ticker" required>
-    <div id = 'return'><p>%</p></div>
+    <input type="text" id="symbolsearch2" class="form-control" placeholder="Enter company name or symbol">
+</div>   
 
+<div id = "stock3" class="dropdown">
     <label>Stock 3</label>
-    <input id="stock3" class="form-control" type="text" name="tickerval3"  placeholder="Ticker" required>
-    <div id = 'return'><p>%</p></div>    
+    <input type="text" id="symbolsearch3" class="form-control" placeholder="Enter company name or symbol">   
+</div>  
 
     <label>Time Period</label>
-    <input id="time period" class="form-control" type="number" name="num"  placeholder="days" required>
+    <label class="radio-inline">
+    <input type="radio" name="inlineTimePeriod" id="inlineRadio1" value="Month"> Month
+    </label>
+
+    <label class="radio-inline">
+    <input type="radio" name="inlineTimePeriod" id="inlineRadio2" value="Quarter"> Quarter
+    </label>
+
+    <label class="radio-inline">
+    <input type="radio" name="inlineTimePeriod" id="inlineRadio3" value="YTD"> YTD
+    </label>
 
     <input id="stockSubmitBtn" class="btn btn-primary" type="submit" value="Submit">
 
