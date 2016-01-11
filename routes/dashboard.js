@@ -77,6 +77,7 @@ router.put('/:clientName', function(req, res, next){
 	
 });
 
+//STOCK LOOK-UP CODE GOES HERE
 router.get('/:clientName/search', function(req, res){
 
 	var num = req.query.num;
