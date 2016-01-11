@@ -52,6 +52,7 @@ router.post('/:clientName', function(req, res, next) {
 	}
 });
 
+/* PUT user info to Dashboard after sign-in. */
 router.put('/:clientName', function(req, res, next){
 
 	knex('clients').where({email: req.body.email}).first().then(function(user){
@@ -82,9 +83,9 @@ router.get('/:clientName/search', function(req, res){
 	var tickerVal1 = req.query.tickerval1;
 	var tickerVal2 = req.query.tickerval2;
 	var tickerVal3 = req.query.tickerval3;
-	// var tickerVal4 = req.query.tickerval4;
-	// var tickerVal5 = req.query.tickerval5;
-	// var tickerVal6 = req.query.tickerval6;
+	//var tickerVal4 = req.query.tickerval4;
+	//var tickerVal5 = req.query.tickerval5;
+	//var tickerVal6 = req.query.tickerval6;
 
 	function promisifyGet(url) {
 	    return new Promise(function(resolve, reject) {

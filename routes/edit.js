@@ -11,12 +11,6 @@ router.get('/edit', function(req, res, next) {
 	}); 
 });
 
-router.get('/settings', function(req, res, next) {
-	knex('clients').where({id: req.session.id}).first().then(function(user){
-		res.render('settings', {title:"Momentum Investments", name: user.name, phone: user.phone, address: user.address});
-	});
-});
-
 router.post('/edit', function(req, res, next) {
 
 	if (req.body.password !== req.body.pwConfirm){
@@ -38,5 +32,17 @@ router.post('/edit', function(req, res, next) {
 	}
 });
 
+router.get('/settings', function(req, res, next) {
+	knex('clients').where({id: req.session.id}).first().then(function(user){
+		res.render('settings', {title:"Momentum Investments", name: user.name, phone: user.phone, address: user.address});
+	});
+});
+
+router.get('/settings/delete', function(req, res, next) {
+	knex('clients').where({id: req.session.id}).first().del().then(function(){
+		req.session = null;
+		res.redirect('/');
+	});
+});
 
 module.exports = router;

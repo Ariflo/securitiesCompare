@@ -23,3 +23,12 @@ a {
 #return{
 	float: right;
 }
+
+#deleteAccount{
+	clear: both;
+	margin-left: 40%;
+}
+
+#gem{
+	float:right;
+}

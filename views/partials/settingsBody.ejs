@@ -38,4 +38,26 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<h1>THIS IS WHERE YOU WILL UPDATE YOUR SETTINGS</h1>
+<h1>Settings</h1>
+
+<div id="gem" class="col-sm-4">
+
+      <h4>Update Gobal Market Tickers to watch</h4>
+      <input id="GEM" class="form-control" type="text" name="GEM1" placeholder="Global Index" required>   
+      <input id="GEM" class="form-control" type="text" name="GEM2" placeholder="Global Index" required>
+      <input id="GEM" class="form-control" type="text" name="GEM3" placeholder="Global Index" required>
+      
+</div>
+
+<div id="portfolioDelete" class="col-sm-4">
+
+      <h4>Update Portfolio Storage</h4>
+      <p>Portfolio 1</p><input id="removePortfilo" class="btn btn-danger" type="submit" value="Remove">
+      <p>Portfolio 2</p><input id="removePortfilo" class="btn btn-danger" type="submit" value="Remove">
+      <p>Portfolio 3</p><input id="removePortfilo" class="btn btn-danger" type="submit" value="Remove">
+      <br>
+</div>
+
+<form id="deleteAccount" action="/:clientName/settings/delete" method="GET"> 
+          <input  class="btn btn-danger btn-md" type="submit" value="DELETE ACCOUNT">
+</form>
