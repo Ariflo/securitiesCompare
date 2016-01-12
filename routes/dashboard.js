@@ -191,7 +191,7 @@ router.get('/:clientName/search', function(req, res) {
                 return (end - start) / start * 100;
          }
 
-         var  newValues = [];
+         var  finalValues = [];
 
         for (var i = 0; i < responses.length; i++) {
             var response = JSON.parse(responses[i].body);
@@ -200,15 +200,15 @@ router.get('/:clientName/search', function(req, res) {
             var arrStart = response.Elements[0].DataSeries.close.values[0];
             //console.log(response.body);
 
-            var valusLength = response.Elements[0].DataSeries.close.values.length;
-            var arrEnd = response.Elements[0].DataSeries.close.values[valusLength - 1];
+            var valuesLength = response.Elements[0].DataSeries.close.values.length;
+            var arrEnd = response.Elements[0].DataSeries.close.values[valuesLength - 1];
 
             
             var returnedVal = returnVal(arrStart, arrEnd);
-            newValues.push(returnedVal);
-            console.log(newValues);
+            finalValues.push(returnedVal);
+            console.log(finalValues);
             
-            var max = Math.max(newValues[0], newValues[1], newValues[2]);
+            var max = Math.max(finalValues[0], finalValues[1], finalValues[2]);
 						console.log(max);
 
             res.end();
