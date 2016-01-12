@@ -178,7 +178,8 @@ router.get('/:clientName/search', function(req, res) {
     var p6 = promisifyGet(url6);
 
     //add 3 more promises for the GEM
-    var promiseAll = Promise.all([p1, p2, p3, p4, p5, p6]);
+    //var promiseAll = Promise.all([p1, p2, p3, p4, p5, p6]);
+    var promiseAll = Promise.all([p1, p2, p3]);
     //p4,p5,p6
 
     //responses is an array, one entry for each response
@@ -194,7 +195,7 @@ router.get('/:clientName/search', function(req, res) {
 
         for (var i = 0; i < responses.length; i++) {
             var response = JSON.parse(responses[i].body);
-            console.log(response.Elements[0].DataSeries.close);
+            console.log(response, i);
 
             var arrStart = response.Elements[0].DataSeries.close.values[0];
             //console.log(response.body);
@@ -213,8 +214,9 @@ router.get('/:clientName/search', function(req, res) {
             res.end();
         }
         console.log(responses.length);
-    }).catch(function(error){
-    	console.log(error);
+    })
+		.catch(function(error){
+    	console.log(error.stack);
     	res.end();
     });
 });
