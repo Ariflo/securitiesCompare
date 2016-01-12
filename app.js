@@ -10,7 +10,7 @@ var methodOverride = require("method-override");
 
 require('dotenv').load();
 
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var edit = require('./routes/edit');
 var dashboard = require('./routes/dashboard');
 
@@ -39,10 +39,9 @@ app.use(cookieSession({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 
-app.use('/', routes);
-app.use('/dash', dashboard);
+app.use('/', index);
 app.use('/:clientName', edit);
-
+app.use('/:clientName/dash', dashboard);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

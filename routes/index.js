@@ -5,21 +5,15 @@ var knex = require ("../db/knex");
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	
-	if(req.session === null){
+	knex('clients').where({id: req.session.id}).first().then(function(user){
 
-		res.render('index', { title: 'Momentum Investments', name: 'new'});
+		if(user){
+			res.render('index', { title: 'Momentum Investments', name: user.name});
+		}else{
+			res.render('index', { title: 'Momentum Investments', name: 'client'});
+		}
 
-	}else{
-		knex('clients').where({id: req.session.id}).first().then(function(user){
-			if(user){
-				res.render('index', { title: 'Momentum Investments', name: user.name});
-			}else{
-				res.render('index', { title: 'Momentum Investments', name: 'new'});
-			}
-		 	
-		});
-	}
-  
+	});
 });
 
 module.exports = router;

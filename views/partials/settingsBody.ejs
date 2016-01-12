@@ -2,11 +2,11 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <strong><a class="navbar-brand" href="/dash/<%=name%>"><%= title %></a></strong>
+      <strong><a class="navbar-brand" href="/<%=name%>/dash"><%= title %></a></strong>
      <p class="navbar-text">Welcome <%= name%> </p>
     </div>
     <div class="nav navbar-nav navbar-right">
-      <a class="navbar-brand" href="/dash/<%= name%>/signout">Sign-out</a>
+      <a class="navbar-brand" href="/<%=name%>/dash/signout">Sign-out</a>
     </div><!-- /.navbar-collapse -->
 
      <div class="nav nav-pills">
@@ -39,15 +39,6 @@
 </nav>
 
 <h1>Settings</h1>
-
-<div id="gem" class="col-sm-4">
-
-      <h4>Update Gobal Market Tickers to watch</h4>
-      <input id="GEM" class="form-control" type="text" name="GEM1" placeholder="Global Index" required>   
-      <input id="GEM" class="form-control" type="text" name="GEM2" placeholder="Global Index" required>
-      <input id="GEM" class="form-control" type="text" name="GEM3" placeholder="Global Index" required>
-      
-</div>
 
 <div id="portfolioDelete" class="col-sm-4">
 

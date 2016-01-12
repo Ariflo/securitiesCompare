@@ -2,11 +2,11 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <strong><a class="navbar-brand" href="/dash/<%=name%>"><%= title %></a></strong>
+      <strong><a class="navbar-brand" href="/<%=name%>/dash"><%= title %></a></strong>
      <p class="navbar-text">Welcome <%= name%> </p>
     </div>
     <div class="nav navbar-nav navbar-right">
-      <a class="navbar-brand" href="/dash/<%= name%>/signout">Sign-out</a>
+      <a class="navbar-brand" href="/<%=name%>/dash/signout">Sign-out</a>
     </div><!-- /.navbar-collapse -->
 
      <div class="nav nav-pills">
@@ -38,7 +38,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<form class='col-sm-4' action="/dash/<%=name%>/search" method='GET'>
+<form class='col-sm-4' action="/<%=name%>/dash/search" method='GET'>
 
 <div id = "stock1" class="dropdown">
     <label>Stock 1</label>

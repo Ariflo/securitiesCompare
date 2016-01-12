@@ -11,22 +11,19 @@ var request = require('request');
 router.use(methodOverride('_method'));
 
 
-router.get('/:clientName', function(req, res){
-	if(req.session === null){
-		res.redirect('/');	
-	}else{
-		knex('clients').where({id: req.session.id}).first().then(function(user){
-			if(user){
-				res.render('dashboard', { title: 'Momentum Investments', name: user.name, phone: user.phone, address: user.address});	
-			}else{
-				res.redirect('/');	
-			}
-		});
-	}
+router.get('/', function(req, res){
+
+	knex('clients').where({id: req.session.id}).first().then(function(user){
+		if(user){
+			res.render('dashboard', { title: 'Momentum Investments', name: user.name, phone: user.phone, address: user.address});	
+		}else{
+			res.redirect('/');	
+		}
+	});
 });
 
 /* POST user info to Dashboard. */
-router.post('/:clientName', function(req, res, next) {
+router.post('/', function(req, res, next) {
 	if (req.body.password !== req.body.pwConfirm){
 		res.render("passwordMatchErr", { title: 'Momentum Investments', name:req.body.name, phone: req.body.phone,  address: req.body.address});
 
@@ -53,7 +50,7 @@ router.post('/:clientName', function(req, res, next) {
 });
 
 /* PUT user info to Dashboard after sign-in. */
-router.put('/:clientName', function(req, res, next){
+router.put('/', function(req, res, next){
 
 	knex('clients').where({email: req.body.email}).first().then(function(user){
 		if(user){
@@ -78,7 +75,7 @@ router.put('/:clientName', function(req, res, next){
 });
 
 //STOCK LOOK-UP CODE GOES HERE
-router.get('/:clientName/search', function(req, res){
+router.get('/search', function(req, res){
 	var num = req.query.num;
 	var tickerVal1 = req.query.tickerval1;
 	var tickerVal2 = req.query.tickerval2;
@@ -128,7 +125,7 @@ router.get('/:clientName/search', function(req, res){
 	});
 });
 
-router.get('/:clientName/signout', function(req, res){
+router.get('/signout', function(req, res){
 	req.session = null;
 	res.redirect('/');
 });
