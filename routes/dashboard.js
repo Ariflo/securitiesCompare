@@ -7,7 +7,9 @@ var locus = require('locus');
 var bcrypt = require('bcrypt');
 var methodOverride = require("method-override");
 var request = require('request');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+
+var finMath = require('../main');
 
 router.use(methodOverride('_method'));
 
@@ -137,95 +139,95 @@ router.put('/:clientName', function(req, res, next) {
 //STOCK API CODE GOES HERE
 router.get('/:clientName/search', function(req, res) {
 
-    var num = req.query.num;
-    var tickerVal1 = req.query.tickerval1;
-    var tickerVal2 = req.query.tickerval2;
-    var tickerVal3 = req.query.tickerval3;
-    var tickerVal4 = req.query.tickerval4;
-    var tickerVal5 = req.query.tickerval5;
-    var tickerVal6 = req.query.tickerval6;
+            var num = req.query.num;
+            var tickerVal1 = req.query.tickerval1;
+            var tickerVal2 = req.query.tickerval2;
+            var tickerVal3 = req.query.tickerval3;
+            var tickerVal4 = req.query.tickerval4;
+            var tickerVal5 = req.query.tickerval5;
+            var tickerVal6 = req.query.tickerval6;
 
-    function promisifyGet(url) {
-        return new Promise(function(resolve, reject) {
+            function promisifyGet(url) {
+                return new Promise(function(resolve, reject) {
 
-            request.get(url, function(error, response, body) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(response);
-                }
-            })
+                    request.get(url, function(error, response, body) {
+                        if (error) {
+                            reject(error);
+                        } else {
+                            resolve(response);
+                        }
+                    })
 
+                });
+            };
+
+            var url1 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22" + tickerVal1 + "%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
+            var p1 = promisifyGet(url1);
+
+            var url2 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22" + tickerVal2 + "%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
+            var p2 = promisifyGet(url2);
+
+            var url3 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22" + tickerVal3 + "%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
+            var p3 = promisifyGet(url3);
+
+            var url4 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22SPY%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
+            var p4 = promisifyGet(url4);
+
+            var url5 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22ACWX%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
+            var p5 = promisifyGet(url5);
+
+            var url6 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22BIL%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
+            var p6 = promisifyGet(url6);
+
+            //add 3 more promises for the GEM
+            //var promiseAll = Promise.all([p1, p2, p3, p4, p5, p6]);
+            var promiseAll = Promise.all([p1, p2, p3]);
+            //p4,p5,p6
+
+            //responses is an array, one entry for each response
+            promiseAll.then(function(responses) {
+                    //*****THIS IS WHERE WE CRUNCH THE NUMBERS*********
+                    //parsing code goes here
+                    var parsedSeries = [];
+                    console.log(parsedSeries);
+
+                    for (var i = 0; i < responses.length; i++) {
+                    	
+                        var response = JSON.parse(responses[i].body);
+                        // console.log(response, i);
+
+                        var apiSeries = response.Elements[0].DataSeries.close.values;
+                        
+                        var tickerSeries = {
+                        	tickerName: response.Elements[0].Symbol,
+                        	series: apiSeries
+                        };
+
+
+                        parsedSeries.push(tickerSeries);//full returns data from query
+
+
+                        //then call imported calc function on parsed data
+                        
+                        // console.log(responses.length);
+                      }
+                      console.log(parsedSeries)
+                      finMath.findPercentageReturnAndOrderSeries(parsedSeries);
+                      console.log(parsedSeries)
+                    })
+											
+
+                .catch(function(error) {
+                    console.log(error.stack);
+                    res.end();
+                });
+            });
+
+
+        router.get('/:clientName/signout', function(req, res) {
+            req.session = null;
+            res.redirect('/');
         });
-    };
-
-    var url1 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22" + tickerVal1 + "%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
-    var p1 = promisifyGet(url1);
-
-    var url2 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22" + tickerVal2 + "%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
-    var p2 = promisifyGet(url2);
-
-    var url3 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22" + tickerVal3 + "%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
-    var p3 = promisifyGet(url3);
-
-    var url4 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22SPY%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
-    var p4 = promisifyGet(url4);
-
-    var url5 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22ACWX%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
-    var p5 = promisifyGet(url5);
-
-    var url6 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22BIL%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
-    var p6 = promisifyGet(url6);
-
-    //add 3 more promises for the GEM
-    //var promiseAll = Promise.all([p1, p2, p3, p4, p5, p6]);
-    var promiseAll = Promise.all([p1, p2, p3]);
-    //p4,p5,p6
-
-    //responses is an array, one entry for each response
-    promiseAll.then(function(responses) {
-        //*****THIS IS WHERE WE CRUNCH THE NUMBERS*********
-        
-
-        function returnVal(start,end) {
-                return (end - start) / start * 100;
-         }
-
-         var  finalValues = [];
-
-        for (var i = 0; i < responses.length; i++) {
-            var response = JSON.parse(responses[i].body);
-            console.log(response, i);
-
-            var arrStart = response.Elements[0].DataSeries.close.values[0];
-            //console.log(response.body);
-
-            var valuesLength = response.Elements[0].DataSeries.close.values.length;
-            var arrEnd = response.Elements[0].DataSeries.close.values[valuesLength - 1];
-
-            
-            var returnedVal = returnVal(arrStart, arrEnd);
-            finalValues.push(returnedVal);
-            console.log(finalValues);
-            
-            var max = Math.max(finalValues[0], finalValues[1], finalValues[2]);
-						console.log(max);
-
-            res.end();
-        }
-        console.log(responses.length);
-    })
-		.catch(function(error){
-    	console.log(error.stack);
-    	res.end();
-    });
-});
 
 
-router.get('/:clientName/signout', function(req, res) {
-    req.session = null;
-    res.redirect('/');
-});
-
-
-module.exports = router;
+        module.exports = router;
