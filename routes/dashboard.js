@@ -8,6 +8,7 @@ var bcrypt = require('bcrypt');
 var methodOverride = require("method-override");
 var request = require('request');
 var finMath = require('../public/javascripts/main');
+var math = require('mathjs');
 
 router.use(methodOverride('_method'));
 
@@ -62,8 +63,9 @@ router.put('/', function(req, res, next){
 					req.session.name = user.name;
 					req.session.phone = user.phone;
 					req.session.address = user.address; 
+					req.session.email = user.email;
 
-					res.render('dashboard', {title: 'Momentum Investments', id: req.session.id, name: req.session.name, phone: user.phone,  address: user.address, company: user.company, email: user.email}); 
+					res.render('dashboard', {title: 'Momentum Investments', id: req.session.id, name: user.name, phone: user.phone,  address: user.address, company: user.company, email: user.email}); 
 				}else{
 					res.render('signinErr', {title: 'Momentum Investments', name:req.body.name, phone: req.body.phone,  address: req.body.address});
 				}
@@ -77,7 +79,7 @@ router.put('/', function(req, res, next){
 
 //STOCK LOOK-UP CODE GOES HERE
 router.get('/search', function(req, res){
-
+	                      	 
 	             var num = req.query.num;
 	             var tickerVal1 = req.query.tickerval1;
 	             var tickerVal2 = req.query.tickerval2;
@@ -86,6 +88,8 @@ router.get('/search', function(req, res){
 	             // var tickerVal5 = req.query.tickerval5;
 	             // var tickerVal6 = req.query.tickerval6;
 	             var response, apiSeries, tickerSeries, parsedSeries;
+	             var ticker1, ticker2, ticker3;
+		 var return1, return2, return3;	
 
 	             function promisifyGet(url) {
 	                 return new Promise(function(resolve, reject) {
@@ -145,7 +149,17 @@ router.get('/search', function(req, res){
 		                         //then call imported calc function on parsed data            
 		           	}                       
 		                         finMath.findPercentageReturnAndOrderSeries(parsedSeries);
-		                      	     console.log(parsedSeries);
+		                       
+		                      	 ticker1 = parsedSeries[0].tickerName;
+		                      	 return1 = Number((parsedSeries[0].returnVal).toFixed(2));		                      	 
+
+		                      	 ticker2 = parsedSeries[1].tickerName;
+		                      	 return2 =  Number((parsedSeries[1].returnVal).toFixed(2));		                      	 
+
+		                      	 ticker3 = parsedSeries[2].tickerName;
+		                      	 return3 = Number((parsedSeries[2].returnVal).toFixed(2));
+
+		                      	 res.render('dashboardResults', {title: 'Momentum Investments', id: req.session.id, name: req.session.name, phone: req.session.phone,  address: req.session.address, company: req.session.company, email: req.session.email, ticker1:ticker1, return1:return1, ticker2:ticker2, return2:return2,ticker3:ticker3, return3:return3});
 	             })
 	             	
 	 											      

@@ -1,6 +1,3 @@
-// you want to find out which series has the maximum return
- // not just what the max return is
- 
  function findPercentageReturnAndOrderSeries(series) {
  	var start, end;
 
