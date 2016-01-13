@@ -42,30 +42,30 @@
 
 <div id = "stock1" class="dropdown">
     <label>Stock 1</label>
-    <input type="text" id="symbolsearch" class="form-control" placeholder="Enter company name or symbol">
+    <input type="text" id="symbolsearch" class="form-control"  name="tickerval1"placeholder="Enter company name or symbol">
 </div>   
 
 <div id = "stock2" class="dropdown">
     <label>Stock 2</label>
-    <input type="text" id="symbolsearch2" class="form-control" placeholder="Enter company name or symbol">
+    <input type="text" id="symbolsearch2" class="form-control" name="tickerval2"placeholder="Enter company name or symbol">
 </div>   
 
 <div id = "stock3" class="dropdown">
     <label>Stock 3</label>
-    <input type="text" id="symbolsearch3" class="form-control" placeholder="Enter company name or symbol">   
+    <input type="text" id="symbolsearch3" class="form-control" name="tickerval3" placeholder="Enter company name or symbol">   
 </div>  
 
     <label>Time Period</label>
     <label class="radio-inline">
-    <input type="radio" name="inlineTimePeriod" id="inlineRadio1" value="Month"> Month
+    <input type="radio" name="num" id="inlineRadio1" value="30"> Month
     </label>
 
     <label class="radio-inline">
-    <input type="radio" name="inlineTimePeriod" id="inlineRadio2" value="Quarter"> Quarter
+    <input type="radio" name="num" id="inlineRadio2" value="90"> Quarter
     </label>
 
     <label class="radio-inline">
-    <input type="radio" name="inlineTimePeriod" id="inlineRadio3" value="YTD"> YTD
+    <input type="radio" name="num" id="inlineRadio3" value="365"> YTD
     </label>
 
     <input id="stockSubmitBtn" class="btn btn-primary" type="submit" value="Submit">
