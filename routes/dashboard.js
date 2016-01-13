@@ -213,7 +213,7 @@ router.get('/:clientName/search', function(req, res) {
                       }
                       console.log(parsedSeries)
                       finMath.findPercentageReturnAndOrderSeries(parsedSeries);
-                      console.log(parsedSeries)
+                      console.log(parsedSeries) // instad of this line send it out
                     })
 											
 
