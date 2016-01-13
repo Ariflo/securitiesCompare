@@ -3,7 +3,6 @@ exports.up = function(knex, Promise) {
 		table.increments(); //create id SERIAL PRIMARY KEY
 		table.integer('client_id').references('id').inTable('clients');
 		table.string('ticker');
-		table.string('company');
 	});
 };
 

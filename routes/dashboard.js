@@ -133,9 +133,9 @@ router.get('/search', function(req, res){
 	                     parsedSeries = [];
 
 	                     for (var i = 0; i < responses.length; i++) {
-	                     	
-		                         response = JSON.parse(responses[i].body);             
-		 
+
+		                         response = JSON.parse(responses[i].body);     
+
 		                         apiSeries = response.Elements[0].DataSeries.close.values;
 		                         
 		                         tickerSeries = {
@@ -149,7 +149,7 @@ router.get('/search', function(req, res){
 		                         //then call imported calc function on parsed data            
 		           	}                       
 		                         finMath.findPercentageReturnAndOrderSeries(parsedSeries);
-		                       
+
 		                      	 ticker1 = parsedSeries[0].tickerName;
 		                      	 return1 = Number((parsedSeries[0].returnVal).toFixed(2));		                      	 
 
@@ -160,9 +160,7 @@ router.get('/search', function(req, res){
 		                      	 return3 = Number((parsedSeries[2].returnVal).toFixed(2));
 
 		                      	 res.render('dashboardResults', {title: 'Momentum Investments', id: req.session.id, name: req.session.name, phone: req.session.phone,  address: req.session.address, company: req.session.company, email: req.session.email, ticker1:ticker1, return1:return1, ticker2:ticker2, return2:return2,ticker3:ticker3, return3:return3});
-	             })
-	             	
-	 											      
+	             })							      
 	 
 	                 .catch(function(error) {
 	                   console.log(error.stack);

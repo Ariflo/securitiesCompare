@@ -9,7 +9,6 @@ module.exports = {
     },
     debug:true
   },
-
   staging: {
     client: 'postgresql',
     connection: {
