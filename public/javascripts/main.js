@@ -2,9 +2,11 @@
  // not just what the max return is
  
  function findPercentageReturnAndOrderSeries(series) {
+ 	var start, end;
+
 	     for (var i = series.length - 1; i >= 0; i--) {
-		       var start = series[i].series[0];
-		       var end = series[i].series[series[i].series.length -1];
+		       start = series[i].series[0];
+		       end = series[i].series[series[i].series.length -1];
 		       series[i].returnVal = _returnValOfSeries(start, end);
 		}
 
