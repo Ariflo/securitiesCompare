@@ -4,8 +4,8 @@ var request = require('supertest')
 	, app = require('../app')
 	, expect = require('chai').expect
 
-var DatabaseCleaner = require('database-cleaner');
-var databaseCleaner = new DatabaseCleaner('postgres')
+var knex = require ("../db/knex");
+
 
 describe('homepage', function(){
 	it("welcomes the user to momentum", function(done){
@@ -62,24 +62,31 @@ describe('sign-up form', function(){
 	it("signs user up and sends them to dashboard", function(done){
 
 		request(app).post('/client/dash')
-		.send({title: 'Momentum Investments', name: 'test3', company: 'test inc', email: "a40@a.com", phone: '444',  address: 'test', password:"adminadmin", pwConfirm:"adminadmin"})
+		.send({title: 'Momentum Investments', name: 'test3', company: 'test inc', email: "a11@a.com", phone: '444',  address: 'test', password:"adminadmin", pwConfirm:"adminadmin"})
 		.expect(200)
 		.end(function(err, res){
 			if(err){
 				return done(err);
 			}
-			expect(res.text).to.contain('Sign-out');
+			expect(res.text).to.contain('Sign-out')
 			done();
+
 		})
 	})
-	
-	databaseCleaner.clean(database, callback);
+
+	after(function(){
+
+		knex('clients').del().where({email: "a11@a.com"}).then(function(){
+			
+		});
+		
+	})
 })
 
 describe('sign-in form', function(){
 	it("signs user in and sends them to dashboard", function(done){
 		request(app).put('/client/dash')
-		.send({title: 'Momentum Investments', email: 'test@t.com', password:'admintest'})
+		.send({title: 'Momentum Investments', email: 'a7@a.com', password:'adminadmin'})
 		.expect(200)
 		.end(function(err, res){
 			if(err){

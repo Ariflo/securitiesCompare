@@ -1,4 +1,5 @@
 exports.up = function(knex, Promise) {
+exports.up = function(knex, Promise) {
     	return knex.schema.createTable('clients', function(table){
 		table.increments(); //create id SERIAL PRIMARY KEY
 		table.string('name');
