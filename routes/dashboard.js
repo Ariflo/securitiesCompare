@@ -89,7 +89,7 @@ router.get('/search', function(req, res){
 	             // var tickerVal6 = req.query.tickerval6;
 	             var response, apiSeries, tickerSeries, parsedSeries;
 	             var ticker1, ticker2, ticker3;
-		 var return1, return2, return3;	
+		 var return1, return2, return3;	 
 
 	             function promisifyGet(url) {
 	                 return new Promise(function(resolve, reject) {
@@ -159,7 +159,15 @@ router.get('/search', function(req, res){
 		                      	 ticker3 = parsedSeries[2].tickerName;
 		                      	 return3 = Number((parsedSeries[2].returnVal).toFixed(2));
 
-		                      	 res.render('dashboardResults', {title: 'Momentum Investments', id: req.session.id, name: req.session.name, phone: req.session.phone,  address: req.session.address, company: req.session.company, email: req.session.email, ticker1:ticker1, return1:return1, ticker2:ticker2, return2:return2,ticker3:ticker3, return3:return3});
+		                      	 knex('clients').where({id:req.session.id}).first().then(function(user){
+		                      	 	if(user){
+		                      	 		res.render('dashboardResults', {title: 'Momentum Investments', id: user.id, name: user.name, phone: user.phone,  address: user.address, company: user.company, email: user.email, ticker1:ticker1, return1:return1, ticker2:ticker2, return2:return2,ticker3:ticker3, return3:return3});
+		                      	 	}else{
+		                      	 		res.redirect('/');
+		                      	 	}
+		                      	 	
+		                      	 })
+		                      	 
 	             })							      
 	 
 	                 .catch(function(error) {

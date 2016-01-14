@@ -38,6 +38,7 @@ router.get('/settings', function(req, res, next) {
 	});
 });
 
+
 router.get('/settings/delete', function(req, res, next) {
 	knex('clients').where({id: req.session.id}).first().del().then(function(){
 		req.session = null;
@@ -45,4 +46,13 @@ router.get('/settings/delete', function(req, res, next) {
 	});
 });
 
+
+router.post('/portfolio', function(req, res, next) {
+
+	knex('clients').where({id: req.session.id}).first().then(function(user){
+		knex('securities').insert([{client_id:user.id, ticker:req.body.tickerval1}, {client_id:user.id, ticker:req.body.tickerval2}, {client_id:user.id, ticker:req.body.tickerval3}]).then(function(){
+			res.redirect('/:clientName/dash');
+		});
+	});
+});
 module.exports = router;

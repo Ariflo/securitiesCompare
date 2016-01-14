@@ -71,6 +71,8 @@
     </label>
 
     <input id="stockSubmitBtn" class="btn btn-primary" type="submit" value="Submit">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#portfolioModal">Save</button>
 
 </form>
 <div class="return">
@@ -78,3 +80,33 @@
           <div class='return2' ><%=return2%>%</div>
           <div class='return3'><%=return3%>%</div>  
 </div>
+
+
+
+  <div class="modal fade" id="portfolioModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Save Portfolio</h4>
+          <h6 class="modal-title" id="myModalLabel2">Please confirm the below:</h6>
+        </div>
+          <form id="portfolioForm" action="/<%=name%>/portfolio" method="POST">
+        <div class="modal-body">
+                  <label>Portfolio Name</label>
+                  <input id="portName" class="form-control" type="text" name="portName" placeholder="tech, industrials, energy..." required>
+
+                  <input type="text" id="symbolsearch" class="form-control"  name="tickerval1" value=<%=ticker1%> required>
+
+                   <input type="text" id="symbolsearch" class="form-control"  name="tickerval2" value=<%=ticker2%> required>
+
+                   <input type="text" id="symbolsearch" class="form-control"  name="tickerval3" value=<%=ticker3%> required>
+        </div>
+        <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <input id="updateSubmitBtn" class="btn btn-danger" type="submit" value="Save">
+        </div>
+          </form> 
+      </div>
+    </div>
+  </div>
