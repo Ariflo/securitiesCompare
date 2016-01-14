@@ -8,6 +8,8 @@ var bcrypt = require('bcrypt');
 var methodOverride = require("method-override");
 var request = require('request');
 var bodyParser = require('body-parser');
+var querystring = require('querystring');
+var dateFormat = require('dateformat');
 
 var finMath = require('../main');
 
@@ -156,28 +158,47 @@ router.get('/:clientName/search', function(req, res) {
                         } else {
                             resolve(response);
                         }
-                    })
+                    });
 
                 });
-            };
+            }
 
-            var url1 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22" + TickerVal1 + "%22%20and%20startDate%20%3D%20%222015-10-05%22%20and%20endDate%20%3D%20%22" + date + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
-            var p1 = promisifyGet(url1);
+            function generateFormattedDate(num){
+            	var today = new Date();
+							var priorDate = new Date().setDate(today.getDate() - num);
+							var formattedDate = dateFormat(priorDate, "yyyy-mm-dd");
 
-            var url2 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22" + TickerVal2 + "%22%20and%20startDate%20%3D%20%222015-10-05%22%20and%20endDate%20%3D%20%22" + date + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
-            var p2 = promisifyGet(url2);
+							return formattedDate;
+            }
 
-            var url3 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22" + TickerVal2 + "%22%20and%20startDate%20%3D%20%222015-10-05%22%20and%20endDate%20%3D%20%22" + date + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
-            var p3 = promisifyGet(url3);
+            function generateYahooURL(tickerSymbol, startDate, endDate) {
+            	var queryObj = { 
+								  format: 'json',
+								  diagnostics: 'true',
+								  env: 'store://datatables.org/alltableswithkeys',
+								  callback: '' };
+								  
+								  var baseUrl = 'http://query.yahooapis.com/v1/public/yql?q=' + 'select * from yahoo.finance.historicaldata where symbol = ' + tickerSymbol + ' and startDate = ' +generateFormattedDate(0) + ' and endDate = ' + generateFormattedDate(num) + ' &';
 
-            var url4 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22SPY%22%20and%20startDate%20%3D%20%222015-10-05%22%20and%20endDate%20%3D%20%22" + date + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
-            var p4 = promisifyGet(url4);
+								  var url = baseUrl + querystring.stringify(queryObj);
 
-            var url5 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22ACWX%22%20and%20startDate%20%3D%20%222015-10-05%22%20and%20endDate%20%3D%20%22" + date + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
-            var p5 = promisifyGet(url5);
+								  console.log(url)
 
-            var url6 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22BIL%22%20and%20startDate%20%3D%20%222015-10-05%22%20and%20endDate%20%3D%20%22" + date + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
-            var p6 = promisifyGet(url6);
+            	return url;
+            }
+
+            
+            var p1 = promisifyGet(generateYahooURL(tickerVal1, generateFormattedDate(num), generateFormattedDate(0)));
+            
+            var p2 = promisifyGet(generateYahooURL(tickerVal2, generateFormattedDate(num), generateFormattedDate(0)));
+                    
+            var p3 = promisifyGet(generateYahooURL(tickerVal3, generateFormattedDate(num), generateFormattedDate(0)));
+            
+            var p4 = promisifyGet(generateYahooURL('SPY', generateFormattedDate(num), generateFormattedDate(0)));
+            
+            var p5 = promisifyGet(generateYahooURL('ACWX', generateFormattedDate(num), generateFormattedDate(0)));
+            
+            var p6 = promisifyGet(generateYahooURL('BIL', generateFormattedDate(num), generateFormattedDate(0)));
 
             //add 3 more promises for the GEM
             //var promiseAll = Promise.all([p1, p2, p3, p4, p5, p6]);
@@ -194,7 +215,7 @@ router.get('/:clientName/search', function(req, res) {
                     for (var i = 0; i < responses.length; i++) {
                     	
                         var response = JSON.parse(responses[i].body);
-                        // console.log(response, i);
+                        console.log(response, i);
 
                         var apiSeries = response.query.results.quote.Adj_Close;
                         
