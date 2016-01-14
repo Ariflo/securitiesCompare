@@ -38,7 +38,7 @@
 
 <div id="portfolioDelete" class="col-sm-4">
 
-      <h4>Portfolio Storage</h4>
+      <h4>Stored Portfolios</h4>
       <% for (var i =0; i<portfolios.length; i++) { %>
         <a class="portStorage"><%=portfolios[i].portfolio_name%></a> <a id="deleteAccount" href="/portfolio/<%=portfolios[i].id%>/delete" class="btn btn-danger"> Delete </a>
       <% } %>

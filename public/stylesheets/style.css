@@ -43,12 +43,12 @@ a {
 }
 
 .return1{
-	margin-top: 57%;
-	margin-bottom: 13%;	
-	padding-top: 12%;
-	padding-bottom: 12%;
-	padding-right: 93%;
-	padding-left: 50%;
+	
+	margin-bottom: 21%;	
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-right: 5%;
+	padding-left: 25%;
 	background-color: white;
 
 	border-bottom-right-radius: 5px; 
@@ -58,12 +58,11 @@ a {
 }
 
 .return2{
-	margin-top: 57%;
-	margin-bottom: 13%;
-	padding-top: 12%;
-	padding-bottom: 15%;
-	padding-right: 93%;
-	padding-left: 50%;
+	margin-bottom: 21%;	
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-right: 5%;
+	padding-left: 25%;
 	background-color: white;
 
 	border-bottom-right-radius: 5px; 
@@ -73,12 +72,11 @@ a {
 }
 
 .return3{
-	margin-top: 57%;
-	margin-bottom: 30%;
-	padding-top: 12%;
-	padding-bottom: 12%;
-	padding-right: 93%;
-	padding-left: 50%;
+	margin-bottom: 13%;	
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-right: 5%;
+	padding-left: 25%;
 	background-color: white;
 
 	border-bottom-right-radius: 5px; 
@@ -88,9 +86,25 @@ a {
 }
 
 .text-center{
+	padding-top: 25%;
 	clear:both;
 }
 
 .portStorage{
 	display:block;
 }
+
+#saveBtn, #stockSubmitBtn{
+	margin-top: 5%;
+	display:inline;
+}
+
+#updateSubmitBtn, #deleteAccount{
+	margin-top: 5%;
+	display: block;
+}
+
+.timePeriod{
+	margin-top: 5%;
+}
+
