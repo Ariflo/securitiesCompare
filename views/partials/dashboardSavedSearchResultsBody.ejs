@@ -1,0 +1,109 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <strong><a class="navbar-brand" href="/<%=name%>/dash"><%= title %></a></strong>
+     <p class="navbar-text">Welcome <%= name%> </p>
+    </div>
+    <div class="nav navbar-nav navbar-right">
+      <a class="navbar-brand" href="/<%=name%>/dash/signout">Sign-out</a>
+    </div><!-- /.navbar-collapse -->
+
+     <div class="nav nav-pills">
+    
+       <li role="presentation" class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+                 <ul class="dropdown-menu">
+                   <li><p><%= name%></p></li>
+                   <li><p><%= phone%></p></li>
+                   <li><p><%=address%></p></li>
+                   <li role="separator" class="divider"></li>
+                   <li><a href="/<%= name%>/edit">edit profile</a></li>
+                 </ul>
+               </li>
+
+       <li role="presentation" class="dropdown">
+                  <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Portfolios <span class="caret"></span></a>
+                  <ul id="portfolioDropdown" class="dropdown-menu">
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/<%= name%>/settings">Settings</a></li>
+                  </ul>
+                </li>
+     </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+
+  </div><!-- /.container-fluid -->
+</nav>
+
+<form class='col-sm-4' action="/<%=name%>/dash/search" method='GET'>
+
+<div id = "stock1" class="dropdown">
+    <label>Top Returns</label>
+    <input type="text" id="symbolsearch" class="form-control"  name="tickerval1" value=<%=ticker1%>>
+</div>  
+
+
+<div id = "stock2" class="dropdown">
+    <label>Second to Top Returns</label>
+    <input type="text" id="symbolsearch2" class="form-control" name="tickerval2" value=<%=ticker2%>>
+</div>   
+
+<div id = "stock3" class="dropdown">
+    <label>Least Returns</label>
+    <input type="text" id="symbolsearch3" class="form-control" name="tickerval3" value=<%=ticker3%>> 
+</div>  
+
+
+    <label>Time Period</label>
+    <label class="radio-inline">
+    <input type="radio" name="num" id="inlineRadio1" value="30" required> Month
+    </label>
+
+    <label class="radio-inline">
+    <input type="radio" name="num" id="inlineRadio2" value="90" required> Quarter
+    </label>
+
+    <label class="radio-inline">
+    <input type="radio" name="num" id="inlineRadio3" value="365" required> YTD
+    </label>
+
+    <input id="stockSubmitBtn" class="btn btn-primary" type="submit" value="Submit">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#portfolioModal">Save</button>
+
+</form>
+<div class="return">
+          <div class='return1' ><%=return1%>%</div>
+          <div class='return2' ><%=return2%>%</div>
+          <div class='return3'><%=return3%>%</div>  
+</div>
+
+
+
+  <div class="modal fade" id="portfolioModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Save Portfolio</h4>
+          <h6 class="modal-title" id="myModalLabel2">Please confirm the below:</h6>
+        </div>
+          <form id="portfolioForm" action="/portfolio?_method=put" method="POST">
+        <div class="modal-body">
+                  <label>Portfolio Name</label>
+                  <input id="portName" class="form-control" type="text" name="portName" placeholder="tech, industrials, energy..." value=<%=portName%> required>
+
+                  <input type="text" id="symbolsearch" class="form-control"  name="tickerval1" value=<%=ticker1%> required>
+
+                   <input type="text" id="symbolsearch" class="form-control"  name="tickerval2" value=<%=ticker2%> required>
+
+                   <input type="text" id="symbolsearch" class="form-control"  name="tickerval3" value=<%=ticker3%> required>
+        </div>
+        <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <input id="updateSubmitBtn" class="btn btn-danger" type="submit" value="Save">
+        </div>
+          </form> 
+      </div>
+    </div>
+  </div>

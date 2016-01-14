@@ -25,10 +25,19 @@ router.post('/', function(req, res, next) {
 router.get('/:portfolioName', function(req, res, next) {
 	knex('portfolios').where({portfolio_name: req.params.portfolioName}).first().then(function(portfolio){
 		knex('securities').where({portfolio_id: portfolio.id}).pluck('ticker').then(function(tickers){
-			res.render('dashboardSavedResults',{title: 'Momentum Investments', name: req.session.name, phone: req.session.phone, address: req.session.address, ticker1:tickers[0], ticker2:tickers[1], ticker3:tickers[2]});	
+			req.session.portName = req.params.portfolioName;
+			res.render('dashboardSavedResults',{title: 'Momentum Investments', name: req.session.name, phone: req.session.phone, address: req.session.address, ticker1:tickers[0], ticker2:tickers[1], ticker3:tickers[2], portName: req.params.portfolioName});	
 		});		
 	});
 });
+
+// router.put('/:portfolioName', function(req, res, next) {
+// 	knex('portfolios').where({portfolio_name: req.params.portfolioName}).first().then(function(portfolio){
+// 		knex('securities').where({portfolio_id: portfolio.id}).pluck('ticker').then(function(tickers){
+// 			res.render('dashboardSavedResults',{title: 'Momentum Investments', name: req.session.name, phone: req.session.phone, address: req.session.address, ticker1:tickers[0], ticker2:tickers[1], ticker3:tickers[2], portName:});	
+// 		});		
+// 	});
+// });
 
 
 module.exports = router;
