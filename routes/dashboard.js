@@ -17,7 +17,7 @@ router.get('/', function(req, res){
 
 	knex('clients').where({id: req.session.id}).first().then(function(user){
 		if(user){
-			res.render('dashboard', { title: 'Momentum Investments', name: user.name, phone: user.phone, address: user.address});	
+			res.render('dashboard', {title: 'Momentum Investments', name: user.name, phone: user.phone, address: user.address});	
 		}else{
 			res.redirect('/');	
 		}

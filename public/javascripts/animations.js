@@ -80,13 +80,13 @@ $(function(){
 			}
 		});
 
-	var searchUrl, portfolioLi;
+	var portfolioLi;
 	var outputArea = $("#portfolioDropdown");
 
 	$('.dropdown-toggle').on('click', function(){
 
 		    var portfolioQueryRequest;
-		    searchUrl = "/portfolio";
+		    var searchUrl = "/portfolio";
 
 		    // Generate the request object
 		    portfolioQueryRequest = $.ajax({
@@ -106,7 +106,7 @@ $(function(){
 
 		      for(var i = 0; i<portfolios.length; i++){
 
-		      	  var portfolioLi = ("<li><a href='/portfolio/"+ portfolios[i].portfolio_name +"'>"+ portfolios[i].portfolio_name + "<a></li>");
+		      	  portfolioLi = ("<li><a href='/portfolio/"+ portfolios[i].portfolio_name +"'>"+ portfolios[i].portfolio_name + "<a></li>");
 		      	  outputArea.prepend(portfolioLi);
 		      }
 
@@ -119,10 +119,6 @@ $(function(){
 		      console.log(error);
 		    });
 		});
-
-
-		
-	
 
 
 });

@@ -38,13 +38,13 @@
 
 <div id="portfolioDelete" class="col-sm-4">
 
-      <h4>Update Portfolio Storage</h4>
-      <p>Portfolio 1</p><input id="removePortfilo" class="btn btn-danger" type="submit" value="Remove">
-      <p>Portfolio 2</p><input id="removePortfilo" class="btn btn-danger" type="submit" value="Remove">
-      <p>Portfolio 3</p><input id="removePortfilo" class="btn btn-danger" type="submit" value="Remove">
-      <br>
+      <h4>Portfolio Storage</h4>
+      <% for (var i =0; i<portfolios.length; i++) { %>
+        <a class="portStorage"><%=portfolios[i].portfolio_name%></a> <a id="deleteAccount" href="/portfolio/<%=portfolios[i].id%>/delete" class="btn btn-danger"> Delete </a>
+      <% } %>
+      
 </div>
 
-<form id="deleteAccount" action="/:clientName/settings/delete" method="GET"> 
+<form id="deleteAccount" action="/<%=name%>/settings/delete" method="GET"> 
           <input  class="btn btn-danger btn-md" type="submit" value="DELETE ACCOUNT">
 </form>

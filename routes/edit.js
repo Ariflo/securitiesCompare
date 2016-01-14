@@ -34,7 +34,9 @@ router.post('/edit', function(req, res, next) {
 
 router.get('/settings', function(req, res, next) {
 	knex('clients').where({id: req.session.id}).first().then(function(user){
-		res.render('settings', {title:"Momentum Investments", name: user.name, phone: user.phone, address: user.address});
+		knex('portfolios').where({client_id: user.id}).then(function(portfolios){ 
+			res.render('settings', {title:"Momentum Investments", name: user.name, phone: user.phone, address: user.address, portfolios:portfolios});
+		})
 	});
 });
 

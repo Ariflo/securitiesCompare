@@ -4,7 +4,7 @@ var knex = require ("../db/knex");
 
 
 router.get('/', function(req, res, next) {
-	knex('portfolios').where({client_id:req.session.id}).then(function(portfolios){
+	knex('portfolios').where({client_id: req.session.id}).then(function(portfolios){
 		res.send(portfolios);	
 	});
 });
@@ -48,13 +48,14 @@ router.put('/:portfolioName', function(req, res, next) {
 	}		
 });
 
-// router.delete ('/:portfolioName', function(req, res, next) {
-// 	knex('portfolios').where({portfolio_name: req.params.portfolioName}).first().then(function(portfolio){
-// 		knex('securities').where({portfolio_id: portfolio.id}).pluck('ticker').then(function(tickers){
-// 			res.render('dashboardSavedResults',{title: 'Momentum Investments', name: req.session.name, phone: req.session.phone, address: req.session.address, ticker1:tickers[0], ticker2:tickers[1], ticker3:tickers[2], portName:});	
-// 		});		
-// 	});
-// });
+router.get('/:portfolioId/delete', function(req, res, next) {
+	knex('securities').where({portfolio_id: req.params.portfolioId}).del().then(function(){
+		knex('portfolios').where({id: req.params.portfolioId}).first().del().then(function(){
+			res.redirect('/'+req.session.name+'/settings');	
+		});
+
+	});
+});
 
 
 module.exports = router;
