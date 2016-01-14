@@ -104,6 +104,10 @@ a {
 	display: block;
 }
 
+ #signInSubmitBtn, #signUpSubmitBtn{
+ 	display: inline;
+ }
+
 .timePeriod{
 	margin-top: 5%;
 }
