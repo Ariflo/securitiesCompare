@@ -22,16 +22,13 @@
                  </ul>
                </li>
 
-      <li role="presentation" class="dropdown">
-                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Portfolios <span class="caret"></span></a>
-                 <ul class="dropdown-menu">
-                   <li><a href="#">Portfolio 1</a></li>
-                   <li><a href="#">Portfolio 2</a></li>
-                   <li><a href="#">Portfolio 3</a></li>
-                   <li role="separator" class="divider"></li>
-                   <li><a href="/<%= name%>/settings">Settings</a></li>
-                 </ul>
-               </li>
+       <li role="presentation" class="dropdown">
+                  <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Portfolios <span class="caret"></span></a>
+                  <ul id="portfolioDropdown" class="dropdown-menu">
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/<%= name%>/settings">Settings</a></li>
+                  </ul>
+                </li>
      </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
 
@@ -59,15 +56,15 @@
 
     <label>Time Period</label>
     <label class="radio-inline">
-    <input type="radio" name="num" id="inlineRadio1" value="30"> Month
+    <input type="radio" name="num" id="inlineRadio1" value="30" required> Month
     </label>
 
     <label class="radio-inline">
-    <input type="radio" name="num" id="inlineRadio2" value="90"> Quarter
+    <input type="radio" name="num" id="inlineRadio2" value="90" required> Quarter
     </label>
 
     <label class="radio-inline">
-    <input type="radio" name="num" id="inlineRadio3" value="365"> YTD
+    <input type="radio" name="num" id="inlineRadio3" value="365" required> YTD
     </label>
 
     <input id="stockSubmitBtn" class="btn btn-primary" type="submit" value="Submit">
@@ -91,7 +88,7 @@
           <h4 class="modal-title" id="myModalLabel">Save Portfolio</h4>
           <h6 class="modal-title" id="myModalLabel2">Please confirm the below:</h6>
         </div>
-          <form id="portfolioForm" action="/<%=name%>/portfolio" method="POST">
+          <form id="portfolioForm" action="/portfolio" method="POST">
         <div class="modal-body">
                   <label>Portfolio Name</label>
                   <input id="portName" class="form-control" type="text" name="portName" placeholder="tech, industrials, energy..." required>

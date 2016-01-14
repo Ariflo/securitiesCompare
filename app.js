@@ -13,6 +13,7 @@ require('dotenv').load();
 var index = require('./routes/index');
 var edit = require('./routes/edit');
 var dashboard = require('./routes/dashboard');
+var portfolios = require('./routes/portfolio');
 
 var port = process.env.PORT || 3000; 
 
@@ -42,6 +43,7 @@ app.use(methodOverride('_method'));
 app.use('/', index);
 app.use('/:clientName', edit);
 app.use('/:clientName/dash', dashboard);
+app.use('/portfolio', portfolios);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
