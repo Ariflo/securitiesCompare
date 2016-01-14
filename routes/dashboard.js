@@ -161,27 +161,27 @@ router.get('/:clientName/search', function(req, res) {
                 });
             };
 
-            var url1 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22" + tickerVal1 + "%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
+            var url1 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22" + TickerVal1 + "%22%20and%20startDate%20%3D%20%222015-10-05%22%20and%20endDate%20%3D%20%22" + date + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
             var p1 = promisifyGet(url1);
 
-            var url2 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22" + tickerVal2 + "%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
+            var url2 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22" + TickerVal2 + "%22%20and%20startDate%20%3D%20%222015-10-05%22%20and%20endDate%20%3D%20%22" + date + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
             var p2 = promisifyGet(url2);
 
-            var url3 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22" + tickerVal3 + "%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
+            var url3 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22" + TickerVal2 + "%22%20and%20startDate%20%3D%20%222015-10-05%22%20and%20endDate%20%3D%20%22" + date + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
             var p3 = promisifyGet(url3);
 
-            var url4 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22SPY%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
+            var url4 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22SPY%22%20and%20startDate%20%3D%20%222015-10-05%22%20and%20endDate%20%3D%20%22" + date + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
             var p4 = promisifyGet(url4);
 
-            var url5 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22ACWX%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
+            var url5 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22ACWX%22%20and%20startDate%20%3D%20%222015-10-05%22%20and%20endDate%20%3D%20%22" + date + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
             var p5 = promisifyGet(url5);
 
-            var url6 = "http://dev.markitondemand.com/MODApis/Api/v2/InteractiveChart/json?parameters=%7B%22Normalized%22%3Afalse%2C%22NumberOfDays%22%3A" + num + "%2C%22DataPeriod%22%3A%22Day%22%2C%22Elements%22%3A%5B%7B%22Symbol%22%3A%22BIL%22%2C%22Type%22%3A%22price%22%2C%22Params%22%3A%5B%22c%22%5D%7D%5D%7D";
+            var url6 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22BIL%22%20and%20startDate%20%3D%20%222015-10-05%22%20and%20endDate%20%3D%20%22" + date + "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
             var p6 = promisifyGet(url6);
 
             //add 3 more promises for the GEM
             //var promiseAll = Promise.all([p1, p2, p3, p4, p5, p6]);
-            var promiseAll = Promise.all([p1, p2, p3]);
+            var promiseAll = Promise.all([p1, p2, p3, p4, p5, p6]);
             //p4,p5,p6
 
             //responses is an array, one entry for each response
@@ -196,12 +196,12 @@ router.get('/:clientName/search', function(req, res) {
                         var response = JSON.parse(responses[i].body);
                         // console.log(response, i);
 
-                        var apiSeries = response.Elements[0].DataSeries.close.values;
+                        var apiSeries = response.query.results.quote.Adj_Close;
                         
                         var tickerSeries = {
-                        	tickerName: response.Elements[0].Symbol,
+                        	tickerName: response.query.results.quote[0].Symbol,
                         	series: apiSeries,
-                        	dates: response.Dates
+                        	dates: response.query.results.quote[0].Date
                         };
 
 
@@ -215,7 +215,7 @@ router.get('/:clientName/search', function(req, res) {
                       console.log(parsedSeries);
                       finMath.findPercentageReturnAndOrderSeries(parsedSeries);
                       var myData = JSON.stringify(finMath.organizeRows(parsedSeries))
-                      
+
                       console.log(myData); // instad of this line send it out
 
                       res.send( myData )
