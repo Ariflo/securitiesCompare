@@ -25,9 +25,9 @@
       <li role="presentation" class="dropdown">
                  <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Portfolios <span class="caret"></span></a>
                  <ul id="portfolioDropdown" class="dropdown-menu">
-                   <li role="separator" class="divider"></li>
-                   <li><a href="/<%= name%>/settings">Settings</a></li>
                  </ul>
+                 <li role="separator" class="divider"></li>
+                 <li><a href="/<%= name%>/settings">Settings</a></li>
                </li>
      </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,7 +35,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<form class='col-sm-4' action="/<%=name%>/dash/search?_method=put" method='GET'>
+<form class='col-sm-4' action="/<%=name%>/dash/search?_method=put" method='POST'>
 
 <div id = "stock1" class="dropdown">
     <label>Stock 1</label>

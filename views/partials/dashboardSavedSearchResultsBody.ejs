@@ -23,12 +23,12 @@
                </li>
 
        <li role="presentation" class="dropdown">
-                  <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Portfolios <span class="caret"></span></a>
-                  <ul id="portfolioDropdown" class="dropdown-menu">
-                    <li role="separator" class="divider"></li>
-                    <li><a href="/<%= name%>/settings">Settings</a></li>
-                  </ul>
-                </li>
+                 <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Portfolios <span class="caret"></span></a>
+                 <ul id="portfolioDropdown" class="dropdown-menu">
+                 </ul>
+                 <li role="separator" class="divider"></li>
+                 <li><a href="/<%= name%>/settings">Settings</a></li>
+               </li>
      </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
 
@@ -88,7 +88,7 @@
           <h4 class="modal-title" id="myModalLabel">Save Portfolio</h4>
           <h6 class="modal-title" id="myModalLabel2">Please confirm the below:</h6>
         </div>
-          <form id="portfolioForm" action="/portfolio?_method=put" method="POST">
+          <form id="portfolioForm" action="/portfolio/<%=portName%>?_method=put" method="POST">
         <div class="modal-body">
                   <label>Portfolio Name</label>
                   <input id="portName" class="form-control" type="text" name="portName" placeholder="tech, industrials, energy..." value=<%=portName%> required>

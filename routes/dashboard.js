@@ -177,11 +177,11 @@ router.get('/search', function(req, res){
 });
 
 router.put('/search', function(req, res){
-	             
-	             var num = req.query.num;
-	             var tickerVal1 = req.query.tickerval1;
-	             var tickerVal2 = req.query.tickerval2;
-	             var tickerVal3 = req.query.tickerval3;
+	           
+	             var num = req.body.num;
+	             var tickerVal1 = req.body.tickerval1;
+	             var tickerVal2 = req.body.tickerval2;
+	             var tickerVal3 = req.body.tickerval3;
 	             // var tickerVal4 = req.query.tickerval4;
 	             // var tickerVal5 = req.query.tickerval5;
 	             // var tickerVal6 = req.query.tickerval6;
@@ -260,7 +260,11 @@ router.put('/search', function(req, res){
 		                      	 
 		                      	 knex('clients').where({id:req.session.id}).first().then(function(user){
 		                      	 	if(user){
-		                      	 		res.render('dashboardSavedSearchResults', {title: 'Momentum Investments', id: user.id, name: user.name, phone: user.phone,  address: user.address, company: user.company, email: user.email, ticker1:ticker1, return1:return1, ticker2:ticker2, return2:return2,ticker3:ticker3, return3:return3, portName: req.session.portName});
+		                      	 		req.session.name = user.name;
+		                      	 		req.session.ticker1=ticker1;
+		                      	 		req.session.ticker2=ticker2;
+		                      	 		req.session.ticker3=ticker3;
+		                      	 		res.render('dashboardSavedSearchResults', {title: 'Momentum Investments', id: user.id, name: user.name, phone: user.phone,  address: user.address, company: user.company, email: user.email, ticker1:ticker1, return1:return1, ticker2:ticker2, return2:return2,ticker3:ticker3, return3:return3, portName: req.session.portName, portId: req.session.portId});
 		                      	 	}else{
 		                      	 		res.redirect('/');
 		                      	 	}
