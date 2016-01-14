@@ -80,5 +80,9 @@ $(function(){
 			}
 		});
 
+	$('.dropdown-toggle').on('click', function(){
+		$('.dropdown-menu').prepend('<li><a href="/portfolio/:portName">portfolio1<a></li>')
+	});
+
 
 });
