@@ -200,7 +200,8 @@ router.get('/:clientName/search', function(req, res) {
                         
                         var tickerSeries = {
                         	tickerName: response.Elements[0].Symbol,
-                        	series: apiSeries
+                        	series: apiSeries,
+                        	dates: response.Dates
                         };
 
 
@@ -211,12 +212,20 @@ router.get('/:clientName/search', function(req, res) {
                         
                         // console.log(responses.length);
                       }
-                      console.log(parsedSeries)
+                      console.log(parsedSeries);
                       finMath.findPercentageReturnAndOrderSeries(parsedSeries);
-                      console.log(parsedSeries) // instad of this line send it out
-                    })
-											
+                      var myData = JSON.stringify(finMath.organizeRows(parsedSeries))
+                      
+                      console.log(myData); // instad of this line send it out
 
+                      res.send( myData )
+                      
+                    })
+										
+										
+
+											
+		
                 .catch(function(error) {
                     console.log(error.stack);
                     res.end();
