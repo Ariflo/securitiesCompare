@@ -151,7 +151,8 @@ router.get('/search', function(req, res){
 		                         //then call imported calc function on parsed data            
 		           	}                       
 		                         finMath.findPercentageReturnAndOrderSeries(parsedSeries);
-		                         var myData = JSON.stringify(finMath.organizeRows(parsedSeries));
+		                         var myData = new Array(); 
+		                         myData = JSON.stringify(finMath.organizeRows(parsedSeries));
 
 		                         res.send(myData);
 		                         
@@ -174,7 +175,7 @@ router.get('/search', function(req, res){
 		                      	 // 	}
 		                      	 // })
 		                      	 
-	             })							      
+	            })							      
 	 
 	                 .catch(function(error) {
 	                   console.log(error.stack);
@@ -284,6 +285,7 @@ router.put('/search', function(req, res){
 	                   console.log(error.stack);
 	                    res.end();
 	                 });
+
 });
 
 router.get('/signout', function(req, res){

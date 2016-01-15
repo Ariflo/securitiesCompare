@@ -18,13 +18,15 @@
 function organizeRows(series){
 	var processedSeries = findPercentageReturnAndOrderSeries(series);
 	var chartData = processedSeries;
-	var rows = [];
+	var rows = new Array();
 
 	for (var c = 0; c < chartData[0].dates.length; c++) {
 	       rows.push([chartData[0].dates[c], chartData[0].series[c], chartData[1].series[c], chartData[2].series[c]]);
 	}
-
-	return rows;
+	var rowNum =    rows.map(function(item){
+		parseInt(item, 10);
+	});      
+	return rowNum;
 }
 
 

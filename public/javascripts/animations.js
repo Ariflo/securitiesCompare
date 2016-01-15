@@ -1,6 +1,36 @@
+google.charts.load('current', {'packages': ['line']});
+google.load("visualization", "1", {packages:["line"]});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart(arrayOfRows) {
+
+	 var data = new google.visualization.DataTable();
+	 data.addColumn('number', 'Date');
+	 data.addColumn('number', 'Stock 1');
+	 data.addColumn('number', 'Stock 2');
+	 data.addColumn('number', 'Stock 3');
+
+	for(var i = 0; i < arrayOfRows.length; i++) {
+
+		data.addRow(arrayOfRows[i]);
+	}
+
+	 var options = {
+	     chart: {
+	         title: 'Securities Momentum',
+	         subtitle: 'in millions of dollars (USD)'
+	     },
+	     width: 900,
+	     height: 500
+	 };
+
+	 var chart = new google.charts.Line(document.getElementById('comparison_chart'));
+	 chart.draw(data, options);
+}
+
 $(document).ready(function(){
 
-	$("#symbolsearch").autocomplete({
+	$("#symbolsearch").focus().autocomplete({
 		source: function (request, response) {
 		        $.ajax({
 			        url: "http://dev.markitondemand.com/api/v2/Lookup/jsonp",
@@ -129,15 +159,14 @@ $(document).ready(function(){
 		var timePeriod = $("input[name='num']").val();
 
 		var searchUrl = "/admin/dash/search?tickerval1=" + tickerval1+ "&tickerval2="+tickerval2+"&tickerval3="+tickerval3+"&num="+timePeriod
-		console.log(searchUrl);
+
 		var queryRequest = $.ajax({
 		    type: "GET",
-		    dataType: 'json',
 		    url: searchUrl
 		});
 
-		queryRequest.done(function(data){
-			console.log(data);
+		queryRequest.done(function(arrayOfRows){
+			drawChart(arrayOfRows);
 		});
 
 		queryRequest.fail(function (error) {
@@ -145,5 +174,6 @@ $(document).ready(function(){
 		  console.log(error);
 		});
 	});
+
 });
 
