@@ -1,4 +1,4 @@
-	console.log('run');
+$(document).ready(function(){
 
 	$("#symbolsearch").autocomplete({
 		source: function (request, response) {
@@ -129,6 +129,7 @@
 		var timePeriod = $("input[name='num']").val();
 
 		var searchUrl = "/admin/dash/search?tickerval1=" + tickerval1+ "&tickerval2="+tickerval2+"&tickerval3="+tickerval3+"&num="+timePeriod
+		console.log(searchUrl);
 		var queryRequest = $.ajax({
 		    type: "GET",
 		    dataType: 'json',
@@ -144,4 +145,5 @@
 		  console.log(error);
 		});
 	});
+});
 
