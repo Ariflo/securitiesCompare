@@ -10,11 +10,10 @@ function drawChart(arrayOfRows) {
 	 data.addColumn('number', 'Stock 2');
 	 data.addColumn('number', 'Stock 3');
 
-	for(var i = 0; i < arrayOfRows.length; i++) {
-
-		data.addRow(arrayOfRows[i]);
+	for(var i=0; i<arrayOfRows; i++){
+		data.addRow( JSON.parse(arrayOfRows)[i]);
 	}
-
+	
 	 var options = {
 	     chart: {
 	         title: 'Securities Momentum',
