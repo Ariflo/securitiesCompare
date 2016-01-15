@@ -8,6 +8,7 @@ var bcrypt = require('bcrypt');
 var methodOverride = require("method-override");
 var request = require('request');
 var finMath = require('../public/javascripts/main');
+var chart = require('../public/javascripts/chart');
 var math = require('mathjs');
 
 router.use(methodOverride('_method'));
@@ -133,14 +134,15 @@ router.get('/search', function(req, res){
 	                     parsedSeries = [];
 
 	                     for (var i = 0; i < responses.length; i++) {
+	                     		console.log(response)
+		                        response = JSON.parse(responses[i].body);     
 
-		                         response = JSON.parse(responses[i].body);     
-
-		                         apiSeries = response.Elements[0].DataSeries.close.values;
+		                        apiSeries = response.Elements[0].DataSeries.close.values;
 		                         
-		                         tickerSeries = {
+		                        tickerSeries = {
 		                         	tickerName: response.Elements[0].Symbol,
-		                         	series: apiSeries
+		                         	series: apiSeries,
+		                         	dates: response.Dates
 		                         };
 		 
 		 		//full returns data from query
@@ -149,24 +151,28 @@ router.get('/search', function(req, res){
 		                         //then call imported calc function on parsed data            
 		           	}                       
 		                         finMath.findPercentageReturnAndOrderSeries(parsedSeries);
+		                         var myData = JSON.stringify(finMath.organizeRows(parsedSeries));
 
-		                      	 ticker1 = parsedSeries[0].tickerName;
-		                      	 return1 = Number((parsedSeries[0].returnVal).toFixed(2));		                      	 
+		                         res.send(myData);
+		                         
+		                         //chart.drawChart(myData);
 
-		                      	 ticker2 = parsedSeries[1].tickerName;
-		                      	 return2 =  Number((parsedSeries[1].returnVal).toFixed(2));		                      	 
+		                      	 // ticker1 = parsedSeries[0].tickerName;
+		                      	 // return1 = Number((parsedSeries[0].returnVal).toFixed(2));		                      	 
 
-		                      	 ticker3 = parsedSeries[2].tickerName;
-		                      	 return3 = Number((parsedSeries[2].returnVal).toFixed(2));
+		                      	 // ticker2 = parsedSeries[1].tickerName;
+		                      	 // return2 =  Number((parsedSeries[1].returnVal).toFixed(2));		                      	 
 
-		                      	 knex('clients').where({id:req.session.id}).first().then(function(user){
-		                      	 	if(user){
-		                      	 		res.render('dashboardResults', {title: 'Momentum Investments', id: user.id, name: user.name, phone: user.phone,  address: user.address, company: user.company, email: user.email, ticker1:ticker1, return1:return1, ticker2:ticker2, return2:return2,ticker3:ticker3, return3:return3});
-		                      	 	}else{
-		                      	 		res.redirect('/');
-		                      	 	}
-		                      	 	
-		                      	 })
+		                      	 // ticker3 = parsedSeries[2].tickerName;
+		                      	 // return3 = Number((parsedSeries[2].returnVal).toFixed(2));
+
+		                      	 // knex('clients').where({id:req.session.id}).first().then(function(user){
+		                      	 // 	if(user){
+		                      	 // 		res.render('dashboardResults', {title: 'Momentum Investments', id: user.id, name: user.name, phone: user.phone,  address: user.address, company: user.company, email: user.email, ticker1:ticker1, return1:return1, ticker2:ticker2, return2:return2,ticker3:ticker3, return3:return3, myData:myData});
+		                      	 // 	}else{
+		                      	 // 		res.redirect('/');
+		                      	 // 	}
+		                      	 // })
 		                      	 
 	             })							      
 	 
@@ -247,6 +253,7 @@ router.put('/search', function(req, res){
 		                         //then call imported calc function on parsed data            
 		           	}                       
 		                         finMath.findPercentageReturnAndOrderSeries(parsedSeries);
+		                         var myData = JSON.stringify(finMath.organizeRows(parsedSeries));   
 
 		                      	 ticker1 = parsedSeries[0].tickerName;
 		                      	 return1 = Number((parsedSeries[0].returnVal).toFixed(2));		                      	 

@@ -1,4 +1,4 @@
-$(function(){
+	console.log('run');
 
 	$("#symbolsearch").autocomplete({
 		source: function (request, response) {
@@ -118,7 +118,30 @@ $(function(){
 		      console.log("Something Failed During Request:")
 		      console.log(error);
 		    });
+	});
+
+
+	$('#stockSubmitBtn').on('click', function(e){
+		e.preventDefault();
+		var tickerval1 = $('#symbolsearch').val();
+		var tickerval2 = $('#symbolsearch2').val();
+		var tickerval3 = $('#symbolsearch3').val();
+		var timePeriod = $("input[name='num']").val();
+
+		var searchUrl = "/admin/dash/search?tickerval1=" + tickerval1+ "&tickerval2="+tickerval2+"&tickerval3="+tickerval3+"&num="+timePeriod
+		var queryRequest = $.ajax({
+		    type: "GET",
+		    dataType: 'json',
+		    url: searchUrl
 		});
 
+		queryRequest.done(function(data){
+			console.log(data);
+		});
 
-});
+		queryRequest.fail(function (error) {
+		  console.log("Something Failed During Request:")
+		  console.log(error);
+		});
+	});
+

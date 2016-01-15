@@ -86,8 +86,9 @@ a {
 }
 
 .text-center{
-	padding-top: 25%;
+	padding-top: 50%;
 	clear:both;
+
 }
 
 .portStorage{
@@ -111,4 +112,5 @@ a {
 .timePeriod{
 	margin-top: 5%;
 }
+
 
