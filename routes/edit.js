@@ -25,7 +25,7 @@ router.post('/edit', function(req, res, next) {
 			bcrypt.hash(req.body.password, salt, function(err, hash){
 
 				knex('clients').where({id: req.session.id}).first().update({name: req.body.name, company: req.body.company, email: req.body.email, phone: req.body.phone, address: req.body.address, password: hash}).then(function(){
-					res.redirect('/dash/' + req.body.name);
+					res.redirect('/'+ req.body.name + '/dash');
 				});
 			});
 		});
