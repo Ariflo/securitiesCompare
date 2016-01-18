@@ -172,19 +172,22 @@ router.get('/:clientName/search', function(req, res) {
             }
 
             function generateYahooURL(tickerSymbol, startDate, endDate) {
-            	var queryObj = { 
+            	var queryObj = {
+            			'q': 'select * from yahoo.finance.historicaldata where symbol = "' + tickerSymbol + '" and startDate = "' + startDate + '" and endDate = "' + endDate+'"',
 								  format: 'json',
 								  diagnostics: 'true',
 								  env: 'store://datatables.org/alltableswithkeys',
 								  callback: '' };
 								  
-								  var baseUrl = 'http://query.yahooapis.com/v1/public/yql?q=' + 'select * from yahoo.finance.historicaldata where symbol = ' + tickerSymbol + ' and startDate = ' +generateFormattedDate(0) + ' and endDate = ' + generateFormattedDate(num) + ' &';
+								  var baseUrl = 'http://query.yahooapis.com/v1/public/yql?';
 
 								  var url = baseUrl + querystring.stringify(queryObj);
 
-								  console.log(url)
 
-            	return url;
+
+								  console.log(url);
+
+            			return url;
             }
 
             
@@ -210,36 +213,56 @@ router.get('/:clientName/search', function(req, res) {
                     //*****THIS IS WHERE WE CRUNCH THE NUMBERS*********
                     //parsing code goes here
                     var parsedSeries = [];
-                    console.log(parsedSeries);
+                    var tickerSeries = {};
+                    var apiSeries = [];
+
+                    console.log(responses.length)
 
                     for (var i = 0; i < responses.length; i++) {
-                    	
+          
                         var response = JSON.parse(responses[i].body);
-                        console.log(response, i);
+                        // console.log(response, i);
 
-                        var apiSeries = response.query.results.quote.Adj_Close;
                         
-                        var tickerSeries = {
-                        	tickerName: response.query.results.quote[0].Symbol,
-                        	series: apiSeries,
-                        	dates: response.query.results.quote[0].Date
-                        };
 
+                    		apiSeries.push(response.query.results.quote)
 
-                        parsedSeries.push(tickerSeries);//full returns data from query
+                        console.log("BAAAAM", apiSeries);
 
+                        
+                        tickerSeries.tickerName = response.query.results.quote[0].Symbol;
+                        console.log('hey', tickerSeries.tickerName);
+
+                        tickerSeries.dates = response.query.results.quote[0].Date;
+                        tickerSeries.closings = response.query.results.quote[0];
+                        
+                        parsedSeries.push(tickerSeries)
+
+                        // console.log("YOYOYOYOYO", parsedSeries)
 
                         //then call imported calc function on parsed data
                         
                         // console.log(responses.length);
                       }
-                      console.log(parsedSeries);
-                      finMath.findPercentageReturnAndOrderSeries(parsedSeries);
-                      var myData = JSON.stringify(finMath.organizeRows(parsedSeries))
 
-                      console.log(myData); // instad of this line send it out
+                      // for (var i = 0; i < parsedSeries.length; i++) {
+                      // 	for (var j = 0; j < apiSeries.length; j++) {
 
-                      res.send( myData )
+                      // 		parsedSeries[i].closings.push
+
+                      //   	tickerSeries.closings.push(apiSeries[i].Adj_Close)
+                      //   	//full returns data from query
+                      // 	};
+
+                      // };
+                      
+
+                      finMath.yahooSeries(parsedSeries);
+                      // var myData = JSON.stringify(finMath.organizeRows(parsedSeries))
+
+                      // console.log(myData); // instad of this line send it out
+
+                      res.send( "res.send" )
                       
                     })
 										

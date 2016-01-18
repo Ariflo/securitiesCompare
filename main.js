@@ -13,13 +13,15 @@ function findPercentageReturnAndOrderSeries(series) {
     series.sort(function(series1, series2) {
         return series1.returnVal - series2.returnVal;
     });
-      ////
-
-    ////
-
 
     return series;
 
+}
+
+function yahooSeries(series) {
+    console.log("FROM YAHOO FUNCTION",series);
+
+    return series;
 }
 
 function organizeRows(series){
@@ -46,6 +48,7 @@ function returnValOfSeries(start, end) {
 
 module.exports = {
     'findPercentageReturnAndOrderSeries': findPercentageReturnAndOrderSeries,
+    'yahooSeries': yahooSeries,
     'returnValOfSeries': returnValOfSeries,
     'organizeRows': organizeRows
 };
