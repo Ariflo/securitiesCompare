@@ -1,5 +1,5 @@
-body {
-  background: url('http://naijachurch.com/wp-content/uploads/2014/04/momentum.jpg');	
+html {	
+  background: center url('../images/Momentum.jpg');	
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -86,7 +86,8 @@ a {
 }
 
 .text-center{
-	padding-top: 25%;
+	margin-top: 75%;
+	bottom: 0;
 	clear:both;
 }
 
