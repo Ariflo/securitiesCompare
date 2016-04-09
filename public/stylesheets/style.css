@@ -1,4 +1,4 @@
-html {	
+html, body {	
   background: left url('../images/Momentum.jpg');	
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -86,7 +86,7 @@ a {
 }
 
 .text-center{
-	margin-top: 75%;
+	margin-top: 55%;
 	bottom: 0;
 	clear:both;
 }
