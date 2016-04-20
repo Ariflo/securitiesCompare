@@ -1,11 +1,22 @@
-html, body {	
-  background: left url('../images/Momentum.jpg');	
-  padding: 50px;
+body {		
+  background: center url('../images/Momentum.jpg');	
+  background-size: 98%;
+  padding: 10%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+form{	
+	margin-left: 35%;
+	margin-bottom: 10%;
+	background: rgba(0,0,0,.4);
+}
+
+label{
+	color: #ffffff;
 }
 
 #passMatchErrMsg, #emailCopyErrMsg, #passLengthErrMsg, #siginPassErrMsg{
@@ -39,7 +50,8 @@ a {
 .return{
 	float: left;
 	display: block;
-	margin-right: 50%;
+	background: rgba(0,0,0,.4);
+	padding-right: 1em; 
 }
 
 .return1{
@@ -95,9 +107,16 @@ a {
 	display:block;
 }
 
-#saveBtn, #stockSubmitBtn{
+#stockSubmitBtn{
 	margin-top: 5%;
 	display:inline;
+	margin-left: 38%;
+}
+
+#saveBtn{
+	margin-top: 5%;
+	display:inline;
+	margin-left: 40%;
 }
 
 #updateSubmitBtn, #deleteAccount{

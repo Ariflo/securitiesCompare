@@ -24,25 +24,25 @@
           <form id="signupForm" action="/<%=name%>/dash" method="POST">
         <div class="modal-body">
               <label>Name</label>
-              <input id="name" class="form-control" type="name" name="name" placeholder="Name" required>
+              <input id="name" class="form-control" type="name" name="name" placeholder="Name" autocomplete="off" required>
 
               <label>Company</label>
-              <input id="company" class="form-control" type="text" name="company" placeholder="Company">
+              <input id="company" class="form-control" type="text" name="company" placeholder="Company" autocomplete="off">
 
               <label>Email</label>
-              <input id="email" class="form-control" type="email" name="email" placeholder="Email" required>             
+              <input id="email" class="form-control" type="email" name="email" placeholder="Email" autocomplete="off" required>             
 
                <label>Phone</label>
-              <input id="phone" class="form-control" type="number" name="phone" placeholder="2124567890"  required>
+              <input id="phone" class="form-control" type="number" name="phone" placeholder="2124567890" autocomplete="off"  required>
 
               <label>Address</label>
-              <textarea id="address" class="form-control" type="text" name="address" placeholder = "123 Drury lane apt 2 Newark, CA 94560"  required></textarea>
+              <textarea id="address" class="form-control" type="text" name="address" placeholder = "123 Drury lane apt 2 Newark, CA 94560"  autocomplete="off" required></textarea>
 
               <label>Password</label>
-              <input id="password" class="form-control" type="password" name="password" placeholder="Password"  required>
+              <input id="password" class="form-control" type="password" name="password" autocomplete="off" placeholder="Password"  required>
 
               <label>Password Confirmation</label>
-              <input id="pwConfirm" class="form-control" type="password" name="pwConfirm" placeholder="Password confirm" required>   
+              <input id="pwConfirm" class="form-control" type="password" name="pwConfirm" autocomplete="off" placeholder="Password confirm" required>   
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -66,9 +66,9 @@
 	        <form id="signupForm" action="/<%=name%>/dash?_method=put" method="POST">
 		    <div class="modal-body">
     		          <label>Email</label>
-    		          <input id="email" class="form-control" type="email" name="email" placeholder="Email" required>		         
+    		          <input id="email" class="form-control" type="email" name="email" placeholder="Email" autocomplete="off" required>		         
     		          <label>Password</label>
-    		          <input id="password" class="form-control" type="password" name="password" placeholder="Password" required>
+    		          <input id="password" class="form-control" type="password" name="password"  autocomplete="off"placeholder="Password" required>
 		    </div>
 		    <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

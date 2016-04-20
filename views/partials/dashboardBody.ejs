@@ -35,37 +35,40 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<form class='col-sm-4' action="/<%=name%>/dash/search" method='GET'>
 
-<div id = "stock1" class="dropdown">
-    <label>Stock 1</label>
-    <input type="text" id="symbolsearch" class="form-control"  name="tickerval1"placeholder="Enter company name or symbol" required>
-</div>   
 
-<div id = "stock2" class="dropdown">
-    <label>Stock 2</label>
-    <input type="text" id="symbolsearch2" class="form-control" name="tickerval2"placeholder="Enter company name or symbol" required>
-</div>   
+      <form class='col-sm-4' action="/<%=name%>/dash/search" method='GET'>
 
-<div id = "stock3" class="dropdown">
-    <label>Stock 3</label>
-    <input type="text" id="symbolsearch3" class="form-control" name="tickerval3" placeholder="Enter company name or symbol" required>   
-</div>  
+      <div id = "stock1" class="dropdown">
+          <label>Stock 1</label>
+          <input type="text" id="symbolsearch" class="form-control"  name="tickerval1"placeholder="Enter company name or symbol" required>
+      </div>   
 
-<div class="timePeriod">
-    <label>Time Period</label>
-    <label class="radio-inline">
-    <input type="radio" name="num" id="inlineRadio1" value="30" required> Month
-    </label>
+      <div id = "stock2" class="dropdown">
+          <label>Stock 2</label>
+          <input type="text" id="symbolsearch2" class="form-control" name="tickerval2"placeholder="Enter company name or symbol" required>
+      </div>   
 
-    <label class="radio-inline">
-    <input type="radio" name="num" id="inlineRadio2" value="90" required> Quarter
-    </label>
+      <div id = "stock3" class="dropdown">
+          <label>Stock 3</label>
+          <input type="text" id="symbolsearch3" class="form-control" name="tickerval3" placeholder="Enter company name or symbol" required>   
+      </div>  
 
-    <label class="radio-inline">
-    <input type="radio" name="num" id="inlineRadio3" value="365" required> YTD
-    </label>
+      <div class="timePeriod">
+          <label>Time Period</label>
+          <label class="radio-inline">
+          <input type="radio" name="num" id="inlineRadio1" value="30" required> Month
+          </label>
 
-    <input id="stockSubmitBtn" class="btn btn-primary" type="submit" value="Analyze">
-</div>
-</form>
+          <label class="radio-inline">
+          <input type="radio" name="num" id="inlineRadio2" value="90" required> Quarter
+          </label>
+
+          <label class="radio-inline">
+          <input type="radio" name="num" id="inlineRadio3" value="365" required> YTD
+          </label>
+
+          <input id="stockSubmitBtn" class="btn btn-primary" type="submit" value="Analyze">
+      </div>
+      </form>
+
